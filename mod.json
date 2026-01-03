@@ -1,9 +1,9 @@
 {
-  "Name": "Always display machinery detail",
+  "Name": "Display machinery attributes",
   "Author": "Puce",
-  "Description": "On-screen display of attributes for machinery items when in detail view",
+  "Description": "On-screen display of attributes for machinery items.",
   "ModVersion": "1.0",
-  "GameVersion": "1.23.7",
+  "GameVersion": "1.27.5",
   "ThumbnailPath": "thumb.png",
   "EntryPoint": "DisplayMachineryDetail.Mod",
   "Tags": [],
@@ -13,5 +13,5 @@
   ],
   "Active": true,
   "UGCIdentity": null,
-  "CreatorUGCIdentity": null
+  "CreatorUGCIdentity": "2819846862"
 }
