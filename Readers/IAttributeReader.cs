@@ -1,9 +1,8 @@
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public interface IAttributeReader
 {
-    public interface IAttributeReader
-    {
-        string GetDisplayText();
-        bool IsValid();
-    }
+    string GetDisplayText();
+    bool IsValid();
 }
 

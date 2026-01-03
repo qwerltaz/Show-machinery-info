@@ -1,22 +1,21 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public class MetronomeReader : IAttributeReader
 {
-    public class MetronomeReader : IAttributeReader
+    private readonly MetronomeBehaviour behaviour;
+
+    public MetronomeReader(MetronomeBehaviour behaviour)
     {
-        private readonly MetronomeBehaviour behaviour;
+        this.behaviour = behaviour;
+    }
 
-        public MetronomeReader(MetronomeBehaviour behaviour)
-        {
-            this.behaviour = behaviour;
-        }
+    public bool IsValid() => behaviour != null;
 
-        public bool IsValid() => behaviour != null;
-
-        public string GetDisplayText()
-        {
-            return "Hz: " + behaviour.TempoModifier;
-        }
+    public string GetDisplayText()
+    {
+        return "Hz: " + behaviour.TempoModifier;
     }
 }
 

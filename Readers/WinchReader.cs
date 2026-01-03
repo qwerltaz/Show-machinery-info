@@ -1,22 +1,21 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public class WinchReader : IAttributeReader
 {
-    public class WinchReader : IAttributeReader
+    private readonly WinchBehaviour behaviour;
+
+    public WinchReader(WinchBehaviour behaviour)
     {
-        private readonly WinchBehaviour behaviour;
+        this.behaviour = behaviour;
+    }
 
-        public WinchReader(WinchBehaviour behaviour)
-        {
-            this.behaviour = behaviour;
-        }
+    public bool IsValid() => behaviour != null;
 
-        public bool IsValid() => behaviour != null;
-
-        public string GetDisplayText()
-        {
-            return $"in [{behaviour.LowerLimit}, {behaviour.UpperLimit}]";
-        }
+    public string GetDisplayText()
+    {
+        return $"in [{behaviour.LowerLimit}, {behaviour.UpperLimit}]";
     }
 }
 

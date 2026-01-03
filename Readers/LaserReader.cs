@@ -1,23 +1,22 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public class LaserReader : IAttributeReader
 {
-    public class LaserReader : IAttributeReader
+    private readonly LaserBehaviour behaviour;
+
+    public LaserReader(LaserBehaviour behaviour)
     {
-        private readonly LaserBehaviour behaviour;
+        this.behaviour = behaviour;
+    }
 
-        public LaserReader(LaserBehaviour behaviour)
-        {
-            this.behaviour = behaviour;
-        }
+    public bool IsValid() => behaviour != null;
 
-        public bool IsValid() => behaviour != null;
-
-        public string GetDisplayText()
-        {
-            Color c = behaviour.UserSetColour;
-            return $"rgb({c.r:F2}, {c.g:F2}, {c.b:F2})";
-        }
+    public string GetDisplayText()
+    {
+        Color c = behaviour.UserSetColour;
+        return $"rgb({c.r:F2}, {c.g:F2}, {c.b:F2})";
     }
 }
 

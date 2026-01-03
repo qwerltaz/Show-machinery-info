@@ -1,22 +1,21 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public class DetectorReader : IAttributeReader
 {
-    public class DetectorReader : IAttributeReader
+    private readonly DetectorBehaviour behaviour;
+
+    public DetectorReader(DetectorBehaviour behaviour)
     {
-        private readonly DetectorBehaviour behaviour;
+        this.behaviour = behaviour;
+    }
 
-        public DetectorReader(DetectorBehaviour behaviour)
-        {
-            this.behaviour = behaviour;
-        }
+    public bool IsValid() => behaviour != null;
 
-        public bool IsValid() => behaviour != null;
-
-        public string GetDisplayText()
-        {
-            return $"Range: {behaviour.Range * Global.MetricMultiplier}\n{Utils.IsDoubleDetector(behaviour)}";
-        }
+    public string GetDisplayText()
+    {
+        return $"Range: {behaviour.Range * Global.MetricMultiplier}\n{Utils.IsDoubleDetector(behaviour)}";
     }
 }
 

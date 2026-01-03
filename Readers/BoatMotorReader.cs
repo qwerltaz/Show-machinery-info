@@ -1,22 +1,21 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public class BoatMotorReader : IAttributeReader
 {
-    public class BoatMotorReader : IAttributeReader
+    private readonly BoatMotorBehaviour behaviour;
+
+    public BoatMotorReader(BoatMotorBehaviour behaviour)
     {
-        private readonly BoatMotorBehaviour behaviour;
+        this.behaviour = behaviour;
+    }
 
-        public BoatMotorReader(BoatMotorBehaviour behaviour)
-        {
-            this.behaviour = behaviour;
-        }
+    public bool IsValid() => behaviour != null;
 
-        public bool IsValid() => behaviour != null;
-
-        public string GetDisplayText()
-        {
-            return Utils.IsForward(behaviour);
-        }
+    public string GetDisplayText()
+    {
+        return Utils.IsForward(behaviour);
     }
 }
 

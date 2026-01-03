@@ -1,22 +1,21 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public class DamagableMachineryReader : IAttributeReader
 {
-    public class DamagableMachineryReader : IAttributeReader
+    private readonly DamagableMachineryBehaviour behaviour;
+
+    public DamagableMachineryReader(DamagableMachineryBehaviour behaviour)
     {
-        private readonly DamagableMachineryBehaviour behaviour;
+        this.behaviour = behaviour;
+    }
 
-        public DamagableMachineryReader(DamagableMachineryBehaviour behaviour)
-        {
-            this.behaviour = behaviour;
-        }
+    public bool IsValid() => behaviour != null;
 
-        public bool IsValid() => behaviour != null;
-
-        public string GetDisplayText()
-        {
-            return $"{Utils.IsIndestructible(behaviour)}\n{Utils.IsDestroyed(behaviour)}";
-        }
+    public string GetDisplayText()
+    {
+        return $"{Utils.IsIndestructible(behaviour)}\n{Utils.IsDestroyed(behaviour)}";
     }
 }
 

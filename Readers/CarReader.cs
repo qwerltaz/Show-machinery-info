@@ -1,22 +1,21 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public class CarReader : IAttributeReader
 {
-    public class CarReader : IAttributeReader
+    private readonly CarBehaviour behaviour;
+
+    public CarReader(CarBehaviour behaviour)
     {
-        private readonly CarBehaviour behaviour;
+        this.behaviour = behaviour;
+    }
 
-        public CarReader(CarBehaviour behaviour)
-        {
-            this.behaviour = behaviour;
-        }
+    public bool IsValid() => behaviour != null;
 
-        public bool IsValid() => behaviour != null;
-
-        public string GetDisplayText()
-        {
-            return $"{Utils.IsReversedWheel(behaviour)}\n{Utils.IsBrakeEngaged(behaviour)}";
-        }
+    public string GetDisplayText()
+    {
+        return $"{Utils.IsReversedWheel(behaviour)}\n{Utils.IsBrakeEngaged(behaviour)}";
     }
 }
 

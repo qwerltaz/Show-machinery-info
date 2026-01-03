@@ -1,22 +1,21 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryDetail.Readers;
+
+public class MagnetReader : IAttributeReader
 {
-    public class MagnetReader : IAttributeReader
+    private readonly MagnetBehaviour behaviour;
+
+    public MagnetReader(MagnetBehaviour behaviour)
     {
-        private readonly MagnetBehaviour behaviour;
+        this.behaviour = behaviour;
+    }
 
-        public MagnetReader(MagnetBehaviour behaviour)
-        {
-            this.behaviour = behaviour;
-        }
+    public bool IsValid() => behaviour != null;
 
-        public bool IsValid() => behaviour != null;
-
-        public string GetDisplayText()
-        {
-            return Utils.IsReversed(behaviour);
-        }
+    public string GetDisplayText()
+    {
+        return Utils.IsReversed(behaviour);
     }
 }
 
