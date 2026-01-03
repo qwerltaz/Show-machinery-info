@@ -15,7 +15,17 @@ public class DamagableMachineryReader : IAttributeReader
 
     public string GetDisplayText()
     {
-        return $"{Utils.IsIndestructible(behaviour)}\n{Utils.IsDestroyed(behaviour)}";
+        return $"{GetIndestructibleText()}\n{GetDestroyedText()}";
+    }
+
+    private string GetIndestructibleText()
+    {
+        return behaviour.Indestructible ? "∞" : "";
+    }
+
+    private string GetDestroyedText()
+    {
+        return behaviour.Destroyed ? "Broken" : "";
     }
 }
 

@@ -15,7 +15,12 @@ public class KeyTriggerReader : IAttributeReader
 
     public string GetDisplayText()
     {
-        return Utils.IsDoubleKey(behaviour);
+        return GetDoubleTriggerText();
+    }
+
+    private string GetDoubleTriggerText()
+    {
+        return behaviour.DoubleTrigger ? "Double" : "Single";
     }
 }
 

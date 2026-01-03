@@ -15,7 +15,12 @@ public class MagnetReader : IAttributeReader
 
     public string GetDisplayText()
     {
-        return Utils.IsReversed(behaviour);
+        return GetPolarityText();
+    }
+
+    private string GetPolarityText()
+    {
+        return behaviour.Reversed ? "Repell" : "Attract";
     }
 }
 

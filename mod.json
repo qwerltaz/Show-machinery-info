@@ -9,7 +9,6 @@
     "Tags": [],
     "Scripts": [
         "script.cs",
-        "utils.cs",
         "Core/ModSettings.cs",
         "Core/ModInitializer.cs",
         "Display/AttributeDisplayController.cs",

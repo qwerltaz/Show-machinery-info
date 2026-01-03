@@ -15,7 +15,12 @@ public class GateReader : IAttributeReader
 
     public string GetDisplayText()
     {
-        return $"Threshold: {behaviour.ThresholdPercentage}\nMaxPower: {behaviour.MaxPower}\n{Utils.IsDoubleGate(behaviour)}";
+        return $"Threshold: {behaviour.ThresholdPercentage}\nMaxPower: {behaviour.MaxPower}\n{GetDoubleTriggerText()}";
+    }
+
+    private string GetDoubleTriggerText()
+    {
+        return behaviour.DoubleTrigger ? "Double" : "Single";
     }
 }
 

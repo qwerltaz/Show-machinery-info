@@ -15,7 +15,17 @@ public class CarReader : IAttributeReader
 
     public string GetDisplayText()
     {
-        return $"{Utils.IsReversedWheel(behaviour)}\n{Utils.IsBrakeEngaged(behaviour)}";
+        return $"{GetDirectionText()}\n{GetBrakeText()}";
+    }
+
+    private string GetDirectionText()
+    {
+        return behaviour.MotorSpeed > 0 ? "Reverse" : "";
+    }
+
+    private string GetBrakeText()
+    {
+        return behaviour.IsBrakeEngaged ? "" : "No brake";
     }
 }
 

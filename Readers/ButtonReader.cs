@@ -15,7 +15,12 @@ public class ButtonReader : IAttributeReader
 
     public string GetDisplayText()
     {
-        return Utils.IsDoubleButton(behaviour);
+        return GetDoubleTriggerText();
+    }
+
+    private string GetDoubleTriggerText()
+    {
+        return behaviour.TriggerOnExit ? "Double" : "Single";
     }
 }
 

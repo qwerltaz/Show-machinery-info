@@ -15,7 +15,12 @@ public class DetectorReader : IAttributeReader
 
     public string GetDisplayText()
     {
-        return $"Range: {behaviour.Range * Global.MetricMultiplier}\n{Utils.IsDoubleDetector(behaviour)}";
+        return $"Range: {behaviour.Range * Global.MetricMultiplier}\n{GetDoubleTriggerText()}";
+    }
+
+    private string GetDoubleTriggerText()
+    {
+        return behaviour.TriggerOnExit ? "Double" : "Single";
     }
 }
 

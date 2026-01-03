@@ -15,7 +15,12 @@ public class BoatMotorReader : IAttributeReader
 
     public string GetDisplayText()
     {
-        return Utils.IsForward(behaviour);
+        return GetDirectionText();
+    }
+
+    private string GetDirectionText()
+    {
+        return behaviour.Force < 0 ? "Reverse" : "";
     }
 }
 
