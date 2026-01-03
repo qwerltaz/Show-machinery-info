@@ -6,7 +6,7 @@ using System.Collections.Generic;
 // <summary>
 // Spawn "Toggle detail view only" to toggle whether mod works only in detail view
 // 1. On object spawned, search for the Components (Behaviours)
-// class AttributeManifest:
+// class ShowAttributes:
 // 2. Each frame, align the text objects to the object
 // 3. Each second, update the text objects
 // Destroy the text objects when the object is destroyed
@@ -17,9 +17,9 @@ namespace DisplayMachineryDetail
 {
     public class Mod
     {
-        // TODO Machinery Adding procedure:
+        // Machinery Adding procedure:
         // 1. Add new Getcomponent<>() to if statement in OnItemSpawned
-        // 2. Add new behaviour at AttributeManifest
+        // 2. Add new behaviour at ShowAttributes
         // 3. Add X = GetComponent<>(), and X to if statement in void Awake()
         // 4. Add case to UpdateInfo()
 
@@ -38,7 +38,7 @@ namespace DisplayMachineryDetail
                     // order by this name
                     NameToOrderByOverride = "b",
                     // new item description
-                    DescriptionOverride = "Toggle whether to show machinery info only in detail view",
+                    DescriptionOverride = "Toggle whether to show machinery info only in detail view (default), or always.",
                     // item category
                     CategoryOverride = ModAPI.FindCategory("Entities"),
                     // new item thumbnail (relative path)
@@ -52,17 +52,17 @@ namespace DisplayMachineryDetail
                         onlyDetailView = !onlyDetailView;
                         if(onlyDetailView)
                         {
-                            ModAPI.Notify("show machinery info in detail mode only: on");
+                            ModAPI.Notify("Display machinery attributes in detail mode only: on");
                         }
                         else
                         {
-                            ModAPI.Notify("show machinery info in detail mode only: off");
+                            ModAPI.Notify("Display machinery attributes in detail mode only: off");
                         }
                     }
                 }
             );
 
-            ModAPI.Register<AttributeManifest>();
+            ModAPI.Register<ShowAttributes>();
 
             ModAPI.OnItemSpawned += (sender, obj) => {              
                 if(obj.Instance.GetComponent<BoatMotorBehaviour>()
@@ -81,20 +81,20 @@ namespace DisplayMachineryDetail
                 || obj.Instance.GetComponent<HoverThrusterBehaviour>()
                 || obj.Instance.GetComponent<DamagableMachineryBehaviour>())
                 {
-                    // Add AttributeManifest
-                    obj.Instance.GetOrAddComponent<AttributeManifest>();
+                    // Add ShowAttributes
+                    obj.Instance.GetOrAddComponent<ShowAttributes>();
                 }
                 else if (obj.Instance.GetComponentInChildren<WinchBehaviour>())
                 {
-                    obj.Instance.GetComponentInChildren<WinchBehaviour>().gameObject.GetOrAddComponent<AttributeManifest>();
+                    obj.Instance.GetComponentInChildren<WinchBehaviour>().gameObject.GetOrAddComponent<ShowAttributes>();
                 }
             };
 
             // Delete text on item deleted
             ModAPI.OnItemRemoved += (sender, obj) => {
-                if(obj.Instance.GetComponent<AttributeManifest>())
+                if(obj.Instance.GetComponent<ShowAttributes>())
                 {
-                    AttributeManifest objInstance = obj.Instance.GetComponent<AttributeManifest>();
+                    ShowAttributes objInstance = obj.Instance.GetComponent<ShowAttributes>();
                     UnityEngine.Object.Destroy(objInstance.AttrObject);
                     UnityEngine.Object.Destroy(objInstance.damageabilityObject);
                 }
@@ -103,7 +103,7 @@ namespace DisplayMachineryDetail
     }
 
     // Show the attributes of an object
-    public class AttributeManifest : MonoBehaviour
+    public class ShowAttributes : MonoBehaviour
     {
         // time until a check is made for changes in machinery attributes
         float timeUntilCheck = 0f;
@@ -145,7 +145,7 @@ namespace DisplayMachineryDetail
             // to transform position, scale etc. of object
             pos = GetComponent<Transform>();
 
-            // get the behaviour
+            // get the behaviour.
             boatMotor = GetComponent<BoatMotorBehaviour>();
             button = GetComponent<ButtonBehaviour>();
             lagbox = GetComponent<LagboxBehaviour>();
@@ -269,7 +269,6 @@ namespace DisplayMachineryDetail
                 switch (objIndex){
                     case 0: // BoatMotor
                         AttrObject.GetComponent<TextMesh>().text = Utils.IsForward(boatMotor);
-                        // AttrObject.GetComponent<TextMesh>().text = funkcja;
                         break;
                     
                     case 1: // button
@@ -345,7 +344,6 @@ namespace DisplayMachineryDetail
 
                 if (GetComponent<DamagableMachineryBehaviour>())
                 {
-                    // damageabilityObject.GetComponent<TextMesh>().color = Color.yellow;
                     damageabilityObject.GetComponent<TextMesh>().text = Utils.IsIndestructible(damageableMachinery)
                                                                         + "\n" + Utils.IsDestroyed(damageableMachinery);
                 }
