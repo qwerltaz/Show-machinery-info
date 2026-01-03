@@ -1,0 +1,22 @@
+using UnityEngine;
+
+namespace DisplayMachineryDetail.Readers
+{
+    public class MagnetReader : IAttributeReader
+    {
+        private readonly MagnetBehaviour behaviour;
+
+        public MagnetReader(MagnetBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
+
+        public bool IsValid() => behaviour != null;
+
+        public string GetDisplayText()
+        {
+            return Utils.IsReversed(behaviour);
+        }
+    }
+}
+
