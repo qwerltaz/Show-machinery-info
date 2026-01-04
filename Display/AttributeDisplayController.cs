@@ -4,20 +4,20 @@ namespace DisplayMachineryDetail.Display;
 
 public class AttributeDisplayController
 {
-    private GameObject mainTextObject;
-    private GameObject damageTextObject;
-    private readonly Transform objectTransform;
+    private GameObject? _mainTextObject;
+    private GameObject? _damageTextObject;
+    private readonly Transform _objectTransform;
 
     public AttributeDisplayController(Transform objectTransform)
     {
-        this.objectTransform = objectTransform;
+        _objectTransform = objectTransform;
         InitializeTextObjects();
     }
 
     private void InitializeTextObjects()
     {
-        mainTextObject = CreateTextObject(Color.white);
-        damageTextObject = CreateTextObject(Color.yellow);
+        _mainTextObject = CreateTextObject(Color.white);
+        _damageTextObject = CreateTextObject(Color.yellow);
     }
 
     private GameObject CreateTextObject(Color color)
@@ -34,37 +34,39 @@ public class AttributeDisplayController
 
     public void UpdateText(string mainText, string damageText)
     {
-        if (mainTextObject != null)
+        if (_mainTextObject is not null)
         {
-            mainTextObject.GetComponent<TextMesh>().text = mainText;
+            _mainTextObject.GetComponent<TextMesh>().text = mainText;
         }
 
-        if (damageTextObject != null)
+        if (_damageTextObject is not null)
         {
-            damageTextObject.GetComponent<TextMesh>().text = damageText;
+            _damageTextObject.GetComponent<TextMesh>().text = damageText;
         }
     }
 
     public void UpdatePosition()
     {
-        if (objectTransform == null) return;
+        if (!_objectTransform) return;
 
-        float height = objectTransform.localScale.y;
-        float width = objectTransform.localScale.x;
-        float scaleFactor = Mathf.Sqrt(height) / 50;
+        var height = _objectTransform.localScale.y;
+        var width = _objectTransform.localScale.x;
+        var scaleFactor = Mathf.Sqrt(height) / 50;
 
-        if (mainTextObject != null)
+        if (_mainTextObject is not null)
         {
-            mainTextObject.transform.position = objectTransform.position + new Vector3(0f, -0.03f - 0.2f * height, 0f);
-            mainTextObject.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
-            mainTextObject.transform.rotation = Quaternion.identity;
+            _mainTextObject.transform.position =
+                _objectTransform.position + new Vector3(0f, -0.03f - 0.2f * height, 0f);
+            _mainTextObject.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+            _mainTextObject.transform.rotation = Quaternion.identity;
         }
 
-        if (damageTextObject != null)
+        if (_damageTextObject is not null)
         {
-            damageTextObject.transform.position = objectTransform.position + new Vector3(0.03f + 0.2f * width, 0f, 0f);
-            damageTextObject.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
-            damageTextObject.transform.rotation = Quaternion.identity;
+            _damageTextObject.transform.position =
+                _objectTransform.position + new Vector3(0.03f + 0.2f * width, 0f, 0f);
+            _damageTextObject.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+            _damageTextObject.transform.rotation = Quaternion.identity;
         }
     }
 
@@ -74,7 +76,7 @@ public class AttributeDisplayController
         {
             Destroy();
         }
-        else if (mainTextObject == null || damageTextObject == null)
+        else if (!_mainTextObject || !_damageTextObject)
         {
             InitializeTextObjects();
         }
@@ -82,23 +84,22 @@ public class AttributeDisplayController
 
     public void Destroy()
     {
-        if (mainTextObject != null)
+        if (_mainTextObject)
         {
-            UnityEngine.Object.Destroy(mainTextObject);
-            mainTextObject = null;
+            UnityEngine.Object.Destroy(_mainTextObject);
+            _mainTextObject = null;
         }
 
-        if (damageTextObject != null)
+        if (_damageTextObject)
         {
-            UnityEngine.Object.Destroy(damageTextObject);
-            damageTextObject = null;
+            UnityEngine.Object.Destroy(_damageTextObject);
+            _damageTextObject = null;
         }
     }
 
     public bool HasText()
     {
-        return (mainTextObject != null && !string.IsNullOrEmpty(mainTextObject.GetComponent<TextMesh>()?.text))
-            || (damageTextObject != null && !string.IsNullOrEmpty(damageTextObject.GetComponent<TextMesh>()?.text));
+        return (_mainTextObject is not null && !string.IsNullOrEmpty(_mainTextObject.GetComponent<TextMesh>()?.text))
+               || (_damageTextObject is not null && !string.IsNullOrEmpty(_damageTextObject.GetComponent<TextMesh>()?.text));
     }
 }
-

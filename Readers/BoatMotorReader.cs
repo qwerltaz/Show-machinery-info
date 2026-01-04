@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(BoatMotorBehaviour))]
 public class BoatMotorReader : IAttributeReader
 {
     private readonly BoatMotorBehaviour behaviour;

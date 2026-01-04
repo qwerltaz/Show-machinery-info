@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(HoverThrusterBehaviour))]
 public class HoverThrusterReader : IAttributeReader
 {
     private readonly HoverThrusterBehaviour behaviour;

@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(MetronomeBehaviour))]
 public class MetronomeReader : IAttributeReader
 {
     private readonly MetronomeBehaviour behaviour;

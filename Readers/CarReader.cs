@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(CarBehaviour))]
 public class CarReader : IAttributeReader
 {
     private readonly CarBehaviour behaviour;

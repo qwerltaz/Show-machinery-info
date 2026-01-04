@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(WinchBehaviour))]
 public class WinchReader : IAttributeReader
 {
     private readonly WinchBehaviour behaviour;

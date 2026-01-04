@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(ButtonBehaviour))]
 public class ButtonReader : IAttributeReader
 {
     private readonly ButtonBehaviour behaviour;

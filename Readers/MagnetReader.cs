@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(MagnetBehaviour))]
 public class MagnetReader : IAttributeReader
 {
     private readonly MagnetBehaviour behaviour;

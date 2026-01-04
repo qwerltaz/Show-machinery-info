@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(DetectorBehaviour))]
 public class DetectorReader : IAttributeReader
 {
     private readonly DetectorBehaviour behaviour;

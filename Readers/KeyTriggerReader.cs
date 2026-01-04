@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(KeyTriggerBehaviour))]
 public class KeyTriggerReader : IAttributeReader
 {
     private readonly KeyTriggerBehaviour behaviour;

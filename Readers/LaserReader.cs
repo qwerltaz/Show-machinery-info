@@ -1,7 +1,7 @@
 using UnityEngine;
-
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(LaserBehaviour))]
 public class LaserReader : IAttributeReader
 {
     private readonly LaserBehaviour behaviour;

@@ -13,6 +13,7 @@
         "Core/ModInitializer.cs",
         "Display/AttributeDisplayController.cs",
         "Readers/IAttributeReader.cs",
+        "Readers/ReaderRegistry.cs",
         "Readers/BoatMotorReader.cs",
         "Readers/ButtonReader.cs",
         "Readers/LagboxReader.cs",

@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(LagboxBehaviour))]
 public class LagboxReader : IAttributeReader
 {
     private readonly LagboxBehaviour behaviour;

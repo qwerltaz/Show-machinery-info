@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(DamagableMachineryBehaviour), isDamageReader: true)]
 public class DamagableMachineryReader : IAttributeReader
 {
     private readonly DamagableMachineryBehaviour behaviour;

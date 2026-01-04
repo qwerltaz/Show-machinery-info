@@ -9,130 +9,75 @@ public class Mod
 {
     public static void Main()
     {
+        ReaderRegistry.Initialize();
         ModInitializer.RegisterMod();
     }
 }
 
-
 public class ShowAttributes : MonoBehaviour
 {
-    private float timeUntilCheck = 0f;
+    private float _timeUntilCheck;
     private const float UpdateInterval = 0.5f;
 
-    private IAttributeReader machineryReader;
-    private IAttributeReader damageReader;
-    private AttributeDisplayController displayController;
+    private IAttributeReader _machineryReader;
+    private IAttributeReader _damageReader;
+    private AttributeDisplayController _displayController;
 
-    void Awake()
+    private void Awake()
     {
-        displayController = new AttributeDisplayController(transform);
+        _displayController = new AttributeDisplayController(transform);
         InitializeReaders();
     }
 
     private void InitializeReaders()
     {
-        machineryReader = CreateMachineryReader();
-        
-        DamagableMachineryBehaviour damageableMachinery = GetComponent<DamagableMachineryBehaviour>();
-        if (damageableMachinery != null)
-        {
-            damageReader = new DamagableMachineryReader(damageableMachinery);
-        }
+        _machineryReader = ReaderRegistry.CreateMachineryReader(gameObject);
+        _damageReader = ReaderRegistry.CreateDamageReader(gameObject);
     }
 
-    private IAttributeReader CreateMachineryReader()
-    {
-        BoatMotorBehaviour boatMotor = GetComponent<BoatMotorBehaviour>();
-        if (boatMotor) return new BoatMotorReader(boatMotor);
-
-        ButtonBehaviour button = GetComponent<ButtonBehaviour>();
-        if (button) return new ButtonReader(button);
-
-        LagboxBehaviour lagbox = GetComponent<LagboxBehaviour>();
-        if (lagbox) return new LagboxReader(lagbox);
-
-        KeyTriggerBehaviour keyTrigger = GetComponent<KeyTriggerBehaviour>();
-        if (keyTrigger) return new KeyTriggerReader(keyTrigger);
-
-        DetectorBehaviour detector = GetComponent<DetectorBehaviour>();
-        if (detector) return new DetectorReader(detector);
-
-        MagnetBehaviour magnet = GetComponent<MagnetBehaviour>();
-        if (magnet) return new MagnetReader(magnet);
-
-        LEDBulbBehaviour ledBulb = GetComponent<LEDBulbBehaviour>();
-        if (ledBulb) return new LEDBulbReader(ledBulb);
-
-        GateBehaviour gate = GetComponent<GateBehaviour>();
-        if (gate) return new GateReader(gate);
-
-        RotorBehaviour rotor = GetComponent<RotorBehaviour>();
-        if (rotor) return new RotorReader(rotor);
-
-        ResistorBehaviour resistor = GetComponent<ResistorBehaviour>();
-        if (resistor) return new ResistorReader(resistor);
-
-        MetronomeBehaviour metronome = GetComponent<MetronomeBehaviour>();
-        if (metronome) return new MetronomeReader(metronome);
-
-        CarBehaviour wheel = GetComponent<CarBehaviour>();
-        if (wheel) return new CarReader(wheel);
-
-        WinchBehaviour winch = GetComponentInChildren<WinchBehaviour>();
-        if (winch) return new WinchReader(winch);
-
-        LaserBehaviour laser = GetComponent<LaserBehaviour>();
-        if (laser) return new LaserReader(laser);
-
-        HoverThrusterBehaviour hoverThruster = GetComponent<HoverThrusterBehaviour>();
-        if (hoverThruster) return new HoverThrusterReader(hoverThruster);
-
-        return null;
-    }
-
-    void OnDestroy()
+    private void OnDestroy()
     {
         CleanupDisplay();
     }
 
     public void CleanupDisplay()
     {
-        displayController?.Destroy();
+        _displayController.Destroy();
     }
 
-    void Update()
+    private void Update()
     {
-        timeUntilCheck += Time.unscaledDeltaTime;
-        if (timeUntilCheck > UpdateInterval)
+        _timeUntilCheck += Time.unscaledDeltaTime;
+        if (_timeUntilCheck > UpdateInterval)
         {
-            timeUntilCheck = 0f;
+            _timeUntilCheck = 0f;
             UpdateInfo();
         }
 
         bool shouldDisplay = !ModSettings.OnlyDetailView || Global.main.ShowLimbStatus;
-        
-        if (shouldDisplay && displayController.HasText())
+
+        if (shouldDisplay && _displayController.HasText())
         {
-            displayController.UpdatePosition();
+            _displayController.UpdatePosition();
         }
     }
 
-    void UpdateInfo()
+    private void UpdateInfo()
     {
         bool shouldDisplay = !ModSettings.OnlyDetailView || Global.main.ShowLimbStatus;
 
         if (shouldDisplay)
         {
-            displayController.SetVisible(true);
+            _displayController.SetVisible(true);
 
-            string mainText = machineryReader?.IsValid() == true ? machineryReader.GetDisplayText() : "";
-            string damageText = damageReader?.IsValid() == true ? damageReader.GetDisplayText() : "";
+            string mainText = _machineryReader.IsValid() ? _machineryReader.GetDisplayText() : "";
+            string damageText = _damageReader.IsValid() ? _damageReader.GetDisplayText() : "";
 
-            displayController.UpdateText(mainText, damageText);
+            _displayController.UpdateText(mainText, damageText);
         }
         else
         {
-            displayController.SetVisible(false);
+            _displayController.SetVisible(false);
         }
     }
 }

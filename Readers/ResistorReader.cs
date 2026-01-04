@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(ResistorBehaviour))]
 public class ResistorReader : IAttributeReader
 {
     private readonly ResistorBehaviour behaviour;

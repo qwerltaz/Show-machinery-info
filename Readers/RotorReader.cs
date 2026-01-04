@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(RotorBehaviour))]
 public class RotorReader : IAttributeReader
 {
     private readonly RotorBehaviour behaviour;

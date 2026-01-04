@@ -1,7 +1,7 @@
-using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(GateBehaviour))]
 public class GateReader : IAttributeReader
 {
     private readonly GateBehaviour behaviour;

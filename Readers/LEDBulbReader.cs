@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace DisplayMachineryDetail.Readers;
 
+[BehaviourReader(typeof(LEDBulbBehaviour))]
 public class LEDBulbReader : IAttributeReader
 {
     private readonly LEDBulbBehaviour behaviour;
@@ -19,4 +20,3 @@ public class LEDBulbReader : IAttributeReader
         return $"rgb({c.r:F2}, {c.g:F2}, {c.b:F2})";
     }
 }
-
