@@ -1,26 +1,27 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(DetectorBehaviour))]
-public class DetectorReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly DetectorBehaviour behaviour;
-
-    public DetectorReader(DetectorBehaviour behaviour)
+    [BehaviourReader(typeof(DetectorBehaviour))]
+    public class DetectorReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly DetectorBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public DetectorReader(DetectorBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return $"Range: {behaviour.Range * Global.MetricMultiplier}\n{GetDoubleTriggerText()}";
-    }
+        public bool IsValid() => behaviour != null;
 
-    private string GetDoubleTriggerText()
-    {
-        return behaviour.TriggerOnExit ? "Double" : "Single";
+        public string GetDisplayText()
+        {
+            return $"Range: {behaviour.Range * Global.MetricMultiplier}\n{GetDoubleTriggerText()}";
+        }
+
+        private string GetDoubleTriggerText()
+        {
+            return behaviour.TriggerOnExit ? "Double" : "Single";
+        }
     }
 }
 

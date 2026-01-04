@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Display;
-
-public class AttributeDisplayController
+namespace DisplayMachineryDetail.Display
 {
-    private GameObject? _mainTextObject;
-    private GameObject? _damageTextObject;
-    private readonly Transform _objectTransform;
+    public class AttributeDisplayController
+    {
+        private GameObject _mainTextObject;
+        private GameObject _damageTextObject;
+        private readonly Transform _objectTransform;
 
     public AttributeDisplayController(Transform objectTransform)
     {
@@ -34,12 +34,12 @@ public class AttributeDisplayController
 
     public void UpdateText(string mainText, string damageText)
     {
-        if (_mainTextObject is not null)
+        if (_mainTextObject != null)
         {
             _mainTextObject.GetComponent<TextMesh>().text = mainText;
         }
 
-        if (_damageTextObject is not null)
+        if (_damageTextObject != null)
         {
             _damageTextObject.GetComponent<TextMesh>().text = damageText;
         }
@@ -53,7 +53,7 @@ public class AttributeDisplayController
         var width = _objectTransform.localScale.x;
         var scaleFactor = Mathf.Sqrt(height) / 50;
 
-        if (_mainTextObject is not null)
+        if (_mainTextObject != null)
         {
             _mainTextObject.transform.position =
                 _objectTransform.position + new Vector3(0f, -0.03f - 0.2f * height, 0f);
@@ -61,7 +61,7 @@ public class AttributeDisplayController
             _mainTextObject.transform.rotation = Quaternion.identity;
         }
 
-        if (_damageTextObject is not null)
+        if (_damageTextObject != null)
         {
             _damageTextObject.transform.position =
                 _objectTransform.position + new Vector3(0.03f + 0.2f * width, 0f, 0f);
@@ -99,7 +99,8 @@ public class AttributeDisplayController
 
     public bool HasText()
     {
-        return (_mainTextObject is not null && !string.IsNullOrEmpty(_mainTextObject.GetComponent<TextMesh>()?.text))
-               || (_damageTextObject is not null && !string.IsNullOrEmpty(_damageTextObject.GetComponent<TextMesh>()?.text));
+        return (_mainTextObject != null && !string.IsNullOrEmpty(_mainTextObject.GetComponent<TextMesh>()?.text))
+               || (_damageTextObject != null && !string.IsNullOrEmpty(_damageTextObject.GetComponent<TextMesh>()?.text));
     }
+}
 }

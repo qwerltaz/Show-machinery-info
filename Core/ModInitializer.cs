@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Core;
-
-public static class ModInitializer
+namespace DisplayMachineryDetail.Core
+{
+    public static class ModInitializer
 {
     public static void RegisterMod()
     {
@@ -45,7 +45,7 @@ public static class ModInitializer
         ModAPI.OnItemRemoved += OnItemRemoved;
     }
 
-    private static void OnItemSpawned(object? sender, UserSpawnEventArgs args)
+    private static void OnItemSpawned(object sender, UserSpawnEventArgs args)
     {
         var instance = args.Instance;
 
@@ -59,7 +59,7 @@ public static class ModInitializer
         }
     }
 
-    private static void OnItemRemoved(object? sender, UserSpawnEventArgs args)
+    private static void OnItemRemoved(object sender, UserSpawnEventArgs args)
     {
         ShowAttributes component = args.Instance.GetComponent<ShowAttributes>();
         if (component != null)
@@ -86,4 +86,5 @@ public static class ModInitializer
                || obj.GetComponent<HoverThrusterBehaviour>()
                || obj.GetComponent<DamagableMachineryBehaviour>();
     }
+}
 }

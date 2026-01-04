@@ -1,21 +1,22 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(WinchBehaviour))]
-public class WinchReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly WinchBehaviour behaviour;
-
-    public WinchReader(WinchBehaviour behaviour)
+    [BehaviourReader(typeof(WinchBehaviour))]
+    public class WinchReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly WinchBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public WinchReader(WinchBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return $"in [{behaviour.LowerLimit}, {behaviour.UpperLimit}]";
+        public bool IsValid() => behaviour != null;
+
+        public string GetDisplayText()
+        {
+            return $"in [{behaviour.LowerLimit}, {behaviour.UpperLimit}]";
+        }
     }
 }
 

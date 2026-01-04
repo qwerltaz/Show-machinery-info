@@ -1,21 +1,22 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(RotorBehaviour))]
-public class RotorReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly RotorBehaviour behaviour;
-
-    public RotorReader(RotorBehaviour behaviour)
+    [BehaviourReader(typeof(RotorBehaviour))]
+    public class RotorReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly RotorBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public RotorReader(RotorBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return "Speed: " + behaviour.Speed;
+        public bool IsValid() => behaviour != null;
+
+        public string GetDisplayText()
+        {
+            return "Speed: " + behaviour.Speed;
+        }
     }
 }
 

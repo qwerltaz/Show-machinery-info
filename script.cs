@@ -3,9 +3,9 @@ using DisplayMachineryDetail.Core;
 using DisplayMachineryDetail.Display;
 using DisplayMachineryDetail.Readers;
 
-namespace DisplayMachineryDetail;
-
-public class Mod
+namespace DisplayMachineryDetail
+{
+    public class Mod
 {
     public static void Main()
     {
@@ -80,4 +80,5 @@ public class ShowAttributes : MonoBehaviour
             _displayController.SetVisible(false);
         }
     }
+}
 }

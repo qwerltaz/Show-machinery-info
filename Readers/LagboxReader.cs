@@ -1,21 +1,22 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(LagboxBehaviour))]
-public class LagboxReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly LagboxBehaviour behaviour;
-
-    public LagboxReader(LagboxBehaviour behaviour)
+    [BehaviourReader(typeof(LagboxBehaviour))]
+    public class LagboxReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly LagboxBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public LagboxReader(LagboxBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return "Delay: " + behaviour.DelayModifier;
+        public bool IsValid() => behaviour != null;
+
+        public string GetDisplayText()
+        {
+            return "Delay: " + behaviour.DelayModifier;
+        }
     }
 }
 

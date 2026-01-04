@@ -1,25 +1,28 @@
-using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers;
-
-[AttributeUsage(AttributeTargets.Class)]
-public class BehaviourReaderAttribute : Attribute
+namespace DisplayMachineryDetail.Readers
 {
-    public Type BehaviourType { get; }
-    public bool IsDamageReader { get; }
-
-    public BehaviourReaderAttribute(Type behaviourType, bool isDamageReader = false)
+    [AttributeUsage(AttributeTargets.Class)]
+    public class BehaviourReaderAttribute : Attribute
     {
-        BehaviourType = behaviourType;
-        IsDamageReader = isDamageReader;
-    }
-}
+        public Type BehaviourType { get; }
+        public bool IsDamageReader { get; }
 
-public static class ReaderRegistry
-{
-    private static readonly Dictionary<Type, Type> MachineryReaderMap = new();
-    private static readonly Dictionary<Type, Type> DamageReaderMap = new();
+        public BehaviourReaderAttribute(Type behaviourType, bool isDamageReader = false)
+        {
+            BehaviourType = behaviourType;
+            IsDamageReader = isDamageReader;
+        }
+    }
+
+    public static class ReaderRegistry
+    {
+        private static readonly Dictionary<Type, Type> MachineryReaderMap = new Dictionary<Type, Type>();
+        private static readonly Dictionary<Type, Type> DamageReaderMap = new Dictionary<Type, Type>();
     private static bool _initialized;
 
     public static void Initialize()
@@ -84,4 +87,5 @@ public static class ReaderRegistry
 
         return null;
     }
+}
 }

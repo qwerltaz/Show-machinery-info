@@ -1,26 +1,27 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(KeyTriggerBehaviour))]
-public class KeyTriggerReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly KeyTriggerBehaviour behaviour;
-
-    public KeyTriggerReader(KeyTriggerBehaviour behaviour)
+    [BehaviourReader(typeof(KeyTriggerBehaviour))]
+    public class KeyTriggerReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly KeyTriggerBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public KeyTriggerReader(KeyTriggerBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return GetDoubleTriggerText();
-    }
+        public bool IsValid() => behaviour != null;
 
-    private string GetDoubleTriggerText()
-    {
-        return behaviour.DoubleTrigger ? "Double" : "Single";
+        public string GetDisplayText()
+        {
+            return GetDoubleTriggerText();
+        }
+
+        private string GetDoubleTriggerText()
+        {
+            return behaviour.DoubleTrigger ? "Double" : "Single";
+        }
     }
 }
 

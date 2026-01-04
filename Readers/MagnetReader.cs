@@ -1,26 +1,27 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(MagnetBehaviour))]
-public class MagnetReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly MagnetBehaviour behaviour;
-
-    public MagnetReader(MagnetBehaviour behaviour)
+    [BehaviourReader(typeof(MagnetBehaviour))]
+    public class MagnetReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly MagnetBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public MagnetReader(MagnetBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return GetPolarityText();
-    }
+        public bool IsValid() => behaviour != null;
 
-    private string GetPolarityText()
-    {
-        return behaviour.Reversed ? "Repell" : "Attract";
+        public string GetDisplayText()
+        {
+            return GetPolarityText();
+        }
+
+        private string GetPolarityText()
+        {
+            return behaviour.Reversed ? "Repell" : "Attract";
+        }
     }
 }
 

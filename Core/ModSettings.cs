@@ -1,7 +1,8 @@
-namespace DisplayMachineryDetail.Core;
-
-public static class ModSettings
+namespace DisplayMachineryDetail.Core
 {
-    public static bool OnlyDetailView { get; set; } = true;
+    public static class ModSettings
+    {
+        public static bool OnlyDetailView { get; set; } = true;
+    }
 }
 

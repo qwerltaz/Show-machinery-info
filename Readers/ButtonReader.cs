@@ -1,26 +1,27 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(ButtonBehaviour))]
-public class ButtonReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly ButtonBehaviour behaviour;
-
-    public ButtonReader(ButtonBehaviour behaviour)
+    [BehaviourReader(typeof(ButtonBehaviour))]
+    public class ButtonReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly ButtonBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public ButtonReader(ButtonBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return GetDoubleTriggerText();
-    }
+        public bool IsValid() => behaviour != null;
 
-    private string GetDoubleTriggerText()
-    {
-        return behaviour.TriggerOnExit ? "Double" : "Single";
+        public string GetDisplayText()
+        {
+            return GetDoubleTriggerText();
+        }
+
+        private string GetDoubleTriggerText()
+        {
+            return behaviour.TriggerOnExit ? "Double" : "Single";
+        }
     }
 }
 

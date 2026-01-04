@@ -1,31 +1,32 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(DamagableMachineryBehaviour), isDamageReader: true)]
-public class DamagableMachineryReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly DamagableMachineryBehaviour behaviour;
-
-    public DamagableMachineryReader(DamagableMachineryBehaviour behaviour)
+    [BehaviourReader(typeof(DamagableMachineryBehaviour), isDamageReader: true)]
+    public class DamagableMachineryReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly DamagableMachineryBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public DamagableMachineryReader(DamagableMachineryBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return $"{GetIndestructibleText()}\n{GetDestroyedText()}";
-    }
+        public bool IsValid() => behaviour != null;
 
-    private string GetIndestructibleText()
-    {
-        return behaviour.Indestructible ? "∞" : "";
-    }
+        public string GetDisplayText()
+        {
+            return $"{GetIndestructibleText()}\n{GetDestroyedText()}";
+        }
 
-    private string GetDestroyedText()
-    {
-        return behaviour.Destroyed ? "Broken" : "";
+        private string GetIndestructibleText()
+        {
+            return behaviour.Indestructible ? "∞" : "";
+        }
+
+        private string GetDestroyedText()
+        {
+            return behaviour.Destroyed ? "Broken" : "";
+        }
     }
 }
 

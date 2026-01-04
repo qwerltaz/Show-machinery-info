@@ -1,31 +1,32 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(CarBehaviour))]
-public class CarReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly CarBehaviour behaviour;
-
-    public CarReader(CarBehaviour behaviour)
+    [BehaviourReader(typeof(CarBehaviour))]
+    public class CarReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly CarBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public CarReader(CarBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return $"{GetDirectionText()}\n{GetBrakeText()}";
-    }
+        public bool IsValid() => behaviour != null;
 
-    private string GetDirectionText()
-    {
-        return behaviour.MotorSpeed > 0 ? "Reverse" : "";
-    }
+        public string GetDisplayText()
+        {
+            return $"{GetDirectionText()}\n{GetBrakeText()}";
+        }
 
-    private string GetBrakeText()
-    {
-        return behaviour.IsBrakeEngaged ? "" : "No brake";
+        private string GetDirectionText()
+        {
+            return behaviour.MotorSpeed > 0 ? "Reverse" : "";
+        }
+
+        private string GetBrakeText()
+        {
+            return behaviour.IsBrakeEngaged ? "" : "No brake";
+        }
     }
 }
 

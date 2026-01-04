@@ -1,7 +1,7 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(BoatMotorBehaviour))]
+namespace DisplayMachineryDetail.Readers
+{
+    [BehaviourReader(typeof(BoatMotorBehaviour))]
 public class BoatMotorReader : IAttributeReader
 {
     private readonly BoatMotorBehaviour behaviour;
@@ -22,5 +22,6 @@ public class BoatMotorReader : IAttributeReader
     {
         return behaviour.Force < 0 ? "Reverse" : "";
     }
+}
 }
 

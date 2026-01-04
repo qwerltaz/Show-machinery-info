@@ -1,26 +1,27 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(GateBehaviour))]
-public class GateReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly GateBehaviour behaviour;
-
-    public GateReader(GateBehaviour behaviour)
+    [BehaviourReader(typeof(GateBehaviour))]
+    public class GateReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly GateBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public GateReader(GateBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return $"Threshold: {behaviour.ThresholdPercentage}\nMaxPower: {behaviour.MaxPower}\n{GetDoubleTriggerText()}";
-    }
+        public bool IsValid() => behaviour != null;
 
-    private string GetDoubleTriggerText()
-    {
-        return behaviour.DoubleTrigger ? "Double" : "Single";
+        public string GetDisplayText()
+        {
+            return $"Threshold: {behaviour.ThresholdPercentage}\nMaxPower: {behaviour.MaxPower}\n{GetDoubleTriggerText()}";
+        }
+
+        private string GetDoubleTriggerText()
+        {
+            return behaviour.DoubleTrigger ? "Double" : "Single";
+        }
     }
 }
 

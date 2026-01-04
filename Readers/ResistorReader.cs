@@ -1,21 +1,22 @@
 
-namespace DisplayMachineryDetail.Readers;
-
-[BehaviourReader(typeof(ResistorBehaviour))]
-public class ResistorReader : IAttributeReader
+namespace DisplayMachineryDetail.Readers
 {
-    private readonly ResistorBehaviour behaviour;
-
-    public ResistorReader(ResistorBehaviour behaviour)
+    [BehaviourReader(typeof(ResistorBehaviour))]
+    public class ResistorReader : IAttributeReader
     {
-        this.behaviour = behaviour;
-    }
+        private readonly ResistorBehaviour behaviour;
 
-    public bool IsValid() => behaviour != null;
+        public ResistorReader(ResistorBehaviour behaviour)
+        {
+            this.behaviour = behaviour;
+        }
 
-    public string GetDisplayText()
-    {
-        return $"Power: {behaviour.ResistorPower:F2}";
+        public bool IsValid() => behaviour != null;
+
+        public string GetDisplayText()
+        {
+            return $"Power: {behaviour.ResistorPower:F2}";
+        }
     }
 }
 
