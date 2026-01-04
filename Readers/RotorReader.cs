@@ -1,4 +1,3 @@
-
 namespace DisplayMachineryDetail.Readers
 {
     [BehaviourReader(typeof(RotorBehaviour))]
@@ -19,4 +18,3 @@ namespace DisplayMachineryDetail.Readers
         }
     }
 }
-

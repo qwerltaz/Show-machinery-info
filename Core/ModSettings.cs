@@ -5,4 +5,3 @@ namespace DisplayMachineryDetail.Core
         public static bool OnlyDetailView { get; set; } = true;
     }
 }
-
