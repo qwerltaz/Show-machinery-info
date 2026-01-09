@@ -1,7 +1,6 @@
-
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryAttributes.Readers
 {
-    [BehaviourReader(typeof(DamagableMachineryBehaviour), isDamageReader: true)]
+    [BehaviourReader(typeof(DamagableMachineryBehaviour), true)]
     public class DamagableMachineryReader : IAttributeReader
     {
         private readonly DamagableMachineryBehaviour _behaviour;
@@ -11,7 +10,10 @@ namespace DisplayMachineryDetail.Readers
             _behaviour = behaviour;
         }
 
-        public bool IsValid() => _behaviour != null;
+        public bool IsValid()
+        {
+            return _behaviour != null;
+        }
 
         public string GetDisplayText()
         {
@@ -29,4 +31,3 @@ namespace DisplayMachineryDetail.Readers
         }
     }
 }
-

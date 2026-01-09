@@ -1,5 +1,4 @@
-
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryAttributes.Readers
 {
     [BehaviourReader(typeof(MetronomeBehaviour))]
     public class MetronomeReader : IAttributeReader
@@ -11,7 +10,10 @@ namespace DisplayMachineryDetail.Readers
             _behaviour = behaviour;
         }
 
-        public bool IsValid() => _behaviour != null;
+        public bool IsValid()
+        {
+            return _behaviour != null;
+        }
 
         public string GetDisplayText()
         {
@@ -19,4 +21,3 @@ namespace DisplayMachineryDetail.Readers
         }
     }
 }
-

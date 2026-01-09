@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryAttributes.Readers
 {
     [BehaviourReader(typeof(LaserBehaviour))]
     public class LaserReader : IAttributeReader
@@ -12,13 +10,15 @@ namespace DisplayMachineryDetail.Readers
             _behaviour = behaviour;
         }
 
-        public bool IsValid() => _behaviour != null;
+        public bool IsValid()
+        {
+            return _behaviour != null;
+        }
 
         public string GetDisplayText()
         {
-            Color c = _behaviour.UserSetColour;
+            var c = _behaviour.UserSetColour;
             return $"rgb({c.r:F2}, {c.g:F2}, {c.b:F2})";
         }
     }
 }
-

@@ -1,9 +1,9 @@
+using DisplayMachineryAttributes.Core;
+using DisplayMachineryAttributes.Display;
+using DisplayMachineryAttributes.Readers;
 using UnityEngine;
-using DisplayMachineryDetail.Core;
-using DisplayMachineryDetail.Display;
-using DisplayMachineryDetail.Readers;
 
-namespace DisplayMachineryDetail
+namespace DisplayMachineryAttributes
 {
     public class Mod
     {
@@ -16,33 +16,17 @@ namespace DisplayMachineryDetail
 
     public class ShowAttributes : MonoBehaviour
     {
-        private float _timeUntilCheck;
         private const float UpdateInterval = 0.5f;
-
-        private IAttributeReader _machineryReader;
         private IAttributeReader _damageReader;
         private AttributeDisplayController _displayController;
+
+        private IAttributeReader _machineryReader;
+        private float _timeUntilCheck;
 
         private void Awake()
         {
             _displayController = new AttributeDisplayController(transform);
             InitializeReaders();
-        }
-
-        private void InitializeReaders()
-        {
-            _machineryReader = ReaderRegistry.CreateMachineryReader(gameObject);
-            _damageReader = ReaderRegistry.CreateDamageReader(gameObject);
-        }
-
-        private void OnDestroy()
-        {
-            CleanupDisplay();
-        }
-
-        public void CleanupDisplay()
-        {
-            _displayController?.Destroy();
         }
 
         private void Update()
@@ -56,10 +40,23 @@ namespace DisplayMachineryDetail
 
             var shouldDisplay = !ModSettings.OnlyDetailView || Global.main.ShowLimbStatus;
 
-            if (shouldDisplay && _displayController?.HasText() == true)
-            {
-                _displayController.UpdatePosition();
-            }
+            if (shouldDisplay && _displayController?.HasText() == true) _displayController.UpdatePosition();
+        }
+
+        private void OnDestroy()
+        {
+            CleanupDisplay();
+        }
+
+        private void InitializeReaders()
+        {
+            _machineryReader = ReaderRegistry.CreateMachineryReader(gameObject);
+            _damageReader = ReaderRegistry.CreateDamageReader(gameObject);
+        }
+
+        public void CleanupDisplay()
+        {
+            _displayController?.Destroy();
         }
 
         private void UpdateInfo()

@@ -1,4 +1,4 @@
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryAttributes.Readers
 {
     public interface IAttributeReader
     {
@@ -6,4 +6,3 @@ namespace DisplayMachineryDetail.Readers
         bool IsValid();
     }
 }
-

@@ -1,12 +1,12 @@
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Display
+namespace DisplayMachineryAttributes.Display
 {
     public class AttributeDisplayController
     {
-        private GameObject _mainTextObject;
-        private GameObject _damageTextObject;
         private readonly Transform _objectTransform;
+        private GameObject _damageTextObject;
+        private GameObject _mainTextObject;
 
         public AttributeDisplayController(Transform objectTransform)
         {
@@ -22,9 +22,9 @@ namespace DisplayMachineryDetail.Display
 
         private GameObject CreateTextObject(Color color)
         {
-            GameObject textObj = new GameObject();
+            var textObj = new GameObject();
             textObj.transform.localScale = new Vector3(0.03f, 0.03f, 1f);
-            TextMesh textMesh = textObj.AddComponent<TextMesh>();
+            var textMesh = textObj.AddComponent<TextMesh>();
             textMesh.fontSize = 32;
             textMesh.anchor = TextAnchor.MiddleCenter;
             textMesh.color = color;
@@ -34,15 +34,9 @@ namespace DisplayMachineryDetail.Display
 
         public void UpdateText(string mainText, string damageText)
         {
-            if (_mainTextObject != null)
-            {
-                _mainTextObject.GetComponent<TextMesh>().text = mainText;
-            }
+            if (_mainTextObject != null) _mainTextObject.GetComponent<TextMesh>().text = mainText;
 
-            if (_damageTextObject != null)
-            {
-                _damageTextObject.GetComponent<TextMesh>().text = damageText;
-            }
+            if (_damageTextObject != null) _damageTextObject.GetComponent<TextMesh>().text = damageText;
         }
 
         public void UpdatePosition()
@@ -73,13 +67,8 @@ namespace DisplayMachineryDetail.Display
         public void SetVisible(bool visible)
         {
             if (!visible)
-            {
                 Destroy();
-            }
-            else if (!_mainTextObject || !_damageTextObject)
-            {
-                InitializeTextObjects();
-            }
+            else if (!_mainTextObject || !_damageTextObject) InitializeTextObjects();
         }
 
         public void Destroy()

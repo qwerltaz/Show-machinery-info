@@ -4,19 +4,19 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace DisplayMachineryDetail.Readers
+namespace DisplayMachineryAttributes.Readers
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class BehaviourReaderAttribute : Attribute
     {
-        public Type BehaviourType { get; }
-        public bool IsDamageReader { get; }
-
         public BehaviourReaderAttribute(Type behaviourType, bool isDamageReader = false)
         {
             BehaviourType = behaviourType;
             IsDamageReader = isDamageReader;
         }
+
+        public Type BehaviourType { get; }
+        public bool IsDamageReader { get; }
     }
 
     public static class ReaderRegistry
@@ -40,13 +40,9 @@ namespace DisplayMachineryDetail.Readers
                 if (attribute != null)
                 {
                     if (attribute.IsDamageReader)
-                    {
                         DamageReaderMap[attribute.BehaviourType] = readerType;
-                    }
                     else
-                    {
                         MachineryReaderMap[attribute.BehaviourType] = readerType;
-                    }
                 }
             }
         }
@@ -71,18 +67,12 @@ namespace DisplayMachineryDetail.Readers
                 Component component;
 
                 if (behaviourType == typeof(WinchBehaviour))
-                {
                     component = gameObject.GetComponentInChildren(behaviourType);
-                }
                 else
-                {
                     component = gameObject.GetComponent(behaviourType);
-                }
 
                 if (component != null)
-                {
                     return (IAttributeReader)Activator.CreateInstance(readerType, new object[] { component });
-                }
             }
 
             return null;
@@ -97,28 +87,18 @@ namespace DisplayMachineryDetail.Readers
                 if (behaviourType == typeof(WinchBehaviour))
                 {
                     component = gameObject.GetComponentInChildren(behaviourType);
-                    if (component != null)
-                    {
-                        return component.gameObject;
-                    }
+                    if (component != null) return component.gameObject;
                 }
                 else
                 {
                     component = gameObject.GetComponent(behaviourType);
-                    if (component != null)
-                    {
-                        return gameObject;
-                    }
+                    if (component != null) return gameObject;
                 }
             }
 
             foreach (var behaviourType in DamageReaderMap.Keys)
-            {
                 if (gameObject.GetComponent(behaviourType) != null)
-                {
                     return gameObject;
-                }
-            }
 
             return null;
         }

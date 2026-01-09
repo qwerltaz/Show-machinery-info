@@ -1,4 +1,4 @@
-namespace DisplayMachineryDetail.Core
+namespace DisplayMachineryAttributes.Core
 {
     public static class ModSettings
     {
