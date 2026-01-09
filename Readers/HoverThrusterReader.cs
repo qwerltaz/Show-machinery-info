@@ -4,18 +4,18 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(HoverThrusterBehaviour))]
     public class HoverThrusterReader : IAttributeReader
     {
-        private readonly HoverThrusterBehaviour behaviour;
+        private readonly HoverThrusterBehaviour _behaviour;
 
         public HoverThrusterReader(HoverThrusterBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
-            return "Height:" + behaviour.BaseHoverHeight * Global.MetricMultiplier;
+            return "Height:" + _behaviour.BaseHoverHeight * Global.MetricMultiplier;
         }
     }
 }

@@ -4,18 +4,18 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(MetronomeBehaviour))]
     public class MetronomeReader : IAttributeReader
     {
-        private readonly MetronomeBehaviour behaviour;
+        private readonly MetronomeBehaviour _behaviour;
 
         public MetronomeReader(MetronomeBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
-            return "Hz: " + behaviour.TempoModifier;
+            return "Hz: " + _behaviour.TempoModifier;
         }
     }
 }

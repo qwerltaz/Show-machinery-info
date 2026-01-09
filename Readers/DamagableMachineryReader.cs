@@ -4,14 +4,14 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(DamagableMachineryBehaviour), isDamageReader: true)]
     public class DamagableMachineryReader : IAttributeReader
     {
-        private readonly DamagableMachineryBehaviour behaviour;
+        private readonly DamagableMachineryBehaviour _behaviour;
 
         public DamagableMachineryReader(DamagableMachineryBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
@@ -20,12 +20,12 @@ namespace DisplayMachineryDetail.Readers
 
         private string GetIndestructibleText()
         {
-            return behaviour.Indestructible ? "∞" : "";
+            return _behaviour.Indestructible ? "∞" : "";
         }
 
         private string GetDestroyedText()
         {
-            return behaviour.Destroyed ? "Broken" : "";
+            return _behaviour.Destroyed ? "Broken" : "";
         }
     }
 }

@@ -4,14 +4,14 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(KeyTriggerBehaviour))]
     public class KeyTriggerReader : IAttributeReader
     {
-        private readonly KeyTriggerBehaviour behaviour;
+        private readonly KeyTriggerBehaviour _behaviour;
 
         public KeyTriggerReader(KeyTriggerBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
@@ -20,7 +20,7 @@ namespace DisplayMachineryDetail.Readers
 
         private string GetDoubleTriggerText()
         {
-            return behaviour.DoubleTrigger ? "Double" : "Single";
+            return _behaviour.DoubleTrigger ? "Double" : "Single";
         }
     }
 }

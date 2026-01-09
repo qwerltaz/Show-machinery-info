@@ -68,7 +68,7 @@ namespace DisplayMachineryDetail.Readers
                 var behaviourType = kvp.Key;
                 var readerType = kvp.Value;
 
-                Component component = null;
+                Component component;
 
                 if (behaviourType == typeof(WinchBehaviour))
                 {

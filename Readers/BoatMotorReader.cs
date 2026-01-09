@@ -4,14 +4,14 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(BoatMotorBehaviour))]
 public class BoatMotorReader : IAttributeReader
 {
-    private readonly BoatMotorBehaviour behaviour;
+    private readonly BoatMotorBehaviour _behaviour;
 
     public BoatMotorReader(BoatMotorBehaviour behaviour)
     {
-        this.behaviour = behaviour;
+        _behaviour = behaviour;
     }
 
-    public bool IsValid() => behaviour != null;
+    public bool IsValid() => _behaviour != null;
 
     public string GetDisplayText()
     {
@@ -20,7 +20,7 @@ public class BoatMotorReader : IAttributeReader
 
     private string GetDirectionText()
     {
-        return behaviour.Force < 0 ? "Reverse" : "";
+        return _behaviour.Force < 0 ? "Reverse" : "";
     }
 }
 }

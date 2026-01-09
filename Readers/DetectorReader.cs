@@ -4,23 +4,23 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(DetectorBehaviour))]
     public class DetectorReader : IAttributeReader
     {
-        private readonly DetectorBehaviour behaviour;
+        private readonly DetectorBehaviour _behaviour;
 
         public DetectorReader(DetectorBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
-            return $"Range: {behaviour.Range * Global.MetricMultiplier}\n{GetDoubleTriggerText()}";
+            return $"Range: {_behaviour.Range * Global.MetricMultiplier}\n{GetDoubleTriggerText()}";
         }
 
         private string GetDoubleTriggerText()
         {
-            return behaviour.TriggerOnExit ? "Double" : "Single";
+            return _behaviour.TriggerOnExit ? "Double" : "Single";
         }
     }
 }

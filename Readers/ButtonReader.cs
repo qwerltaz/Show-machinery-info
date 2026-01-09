@@ -4,14 +4,14 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(ButtonBehaviour))]
     public class ButtonReader : IAttributeReader
     {
-        private readonly ButtonBehaviour behaviour;
+        private readonly ButtonBehaviour _behaviour;
 
         public ButtonReader(ButtonBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
@@ -20,7 +20,7 @@ namespace DisplayMachineryDetail.Readers
 
         private string GetDoubleTriggerText()
         {
-            return behaviour.TriggerOnExit ? "Double" : "Single";
+            return _behaviour.TriggerOnExit ? "Double" : "Single";
         }
     }
 }

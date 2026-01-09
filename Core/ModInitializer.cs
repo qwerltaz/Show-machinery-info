@@ -1,4 +1,3 @@
-using UnityEngine;
 using DisplayMachineryDetail.Readers;
 
 namespace DisplayMachineryDetail.Core

@@ -4,18 +4,18 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(WinchBehaviour))]
     public class WinchReader : IAttributeReader
     {
-        private readonly WinchBehaviour behaviour;
+        private readonly WinchBehaviour _behaviour;
 
         public WinchReader(WinchBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
-            return $"in [{behaviour.LowerLimit}, {behaviour.UpperLimit}]";
+            return $"in [{_behaviour.LowerLimit}, {_behaviour.UpperLimit}]";
         }
     }
 }

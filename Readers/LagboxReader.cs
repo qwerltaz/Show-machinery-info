@@ -3,18 +3,18 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(LagboxBehaviour))]
     public class LagboxReader : IAttributeReader
     {
-        private readonly LagboxBehaviour behaviour;
+        private readonly LagboxBehaviour _behaviour;
 
         public LagboxReader(LagboxBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
-            return "Delay: " + behaviour.DelayModifier;
+            return "Delay: " + _behaviour.DelayModifier;
         }
     }
 }

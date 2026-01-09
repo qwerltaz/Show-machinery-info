@@ -3,18 +3,18 @@ namespace DisplayMachineryDetail.Readers
     [BehaviourReader(typeof(RotorBehaviour))]
     public class RotorReader : IAttributeReader
     {
-        private readonly RotorBehaviour behaviour;
+        private readonly RotorBehaviour _behaviour;
 
         public RotorReader(RotorBehaviour behaviour)
         {
-            this.behaviour = behaviour;
+            _behaviour = behaviour;
         }
 
-        public bool IsValid() => behaviour != null;
+        public bool IsValid() => _behaviour != null;
 
         public string GetDisplayText()
         {
-            return "Speed: " + behaviour.Speed;
+            return "Speed: " + _behaviour.Speed;
         }
     }
 }

@@ -86,13 +86,13 @@ namespace DisplayMachineryDetail.Display
         {
             if (_mainTextObject)
             {
-                UnityEngine.Object.Destroy(_mainTextObject);
+                Object.Destroy(_mainTextObject);
                 _mainTextObject = null;
             }
 
             if (_damageTextObject)
             {
-                UnityEngine.Object.Destroy(_damageTextObject);
+                Object.Destroy(_damageTextObject);
                 _damageTextObject = null;
             }
         }
