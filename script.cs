@@ -19,8 +19,11 @@ namespace DisplayMachineryDetail
         private float _timeUntilCheck;
         private const float UpdateInterval = 0.5f;
 
+        [System.NonSerialized]
         private IAttributeReader _machineryReader;
+        [System.NonSerialized]
         private IAttributeReader _damageReader;
+        [System.NonSerialized]
         private AttributeDisplayController _displayController;
 
         private void Awake()
@@ -70,8 +73,8 @@ namespace DisplayMachineryDetail
             {
                 _displayController.SetVisible(true);
 
-                var mainText = _machineryReader.IsValid() ? _machineryReader.GetDisplayText() : "";
-                var damageText = _damageReader.IsValid() ? _damageReader.GetDisplayText() : "";
+                var mainText = _machineryReader != null && _machineryReader.IsValid() ? _machineryReader.GetDisplayText() : "";
+                var damageText = _damageReader != null && _damageReader.IsValid() ? _damageReader.GetDisplayText() : "";
 
                 _displayController.UpdateText(mainText, damageText);
             }
