@@ -19,11 +19,8 @@ namespace DisplayMachineryDetail
         private float _timeUntilCheck;
         private const float UpdateInterval = 0.5f;
 
-        [System.NonSerialized]
         private IAttributeReader _machineryReader;
-        [System.NonSerialized]
         private IAttributeReader _damageReader;
-        [System.NonSerialized]
         private AttributeDisplayController _displayController;
 
         private void Awake()
@@ -45,7 +42,7 @@ namespace DisplayMachineryDetail
 
         public void CleanupDisplay()
         {
-            _displayController.Destroy();
+            _displayController?.Destroy();
         }
 
         private void Update()
@@ -59,7 +56,7 @@ namespace DisplayMachineryDetail
 
             var shouldDisplay = !ModSettings.OnlyDetailView || Global.main.ShowLimbStatus;
 
-            if (shouldDisplay && _displayController.HasText())
+            if (shouldDisplay && _displayController?.HasText() == true)
             {
                 _displayController.UpdatePosition();
             }
@@ -71,16 +68,16 @@ namespace DisplayMachineryDetail
 
             if (shouldDisplay)
             {
-                _displayController.SetVisible(true);
+                _displayController?.SetVisible(true);
 
-                var mainText = _machineryReader != null && _machineryReader.IsValid() ? _machineryReader.GetDisplayText() : "";
-                var damageText = _damageReader != null && _damageReader.IsValid() ? _damageReader.GetDisplayText() : "";
+                var mainText = _machineryReader?.IsValid() == true ? _machineryReader.GetDisplayText() : "";
+                var damageText = _damageReader?.IsValid() == true ? _damageReader.GetDisplayText() : "";
 
-                _displayController.UpdateText(mainText, damageText);
+                _displayController?.UpdateText(mainText, damageText);
             }
             else
             {
-                _displayController.SetVisible(false);
+                _displayController?.SetVisible(false);
             }
         }
     }

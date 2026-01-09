@@ -81,7 +81,7 @@ namespace DisplayMachineryDetail.Readers
 
                 if (component != null)
                 {
-                    return (IAttributeReader)Activator.CreateInstance(readerType, component);
+                    return (IAttributeReader)Activator.CreateInstance(readerType, new object[] { component });
                 }
             }
 
