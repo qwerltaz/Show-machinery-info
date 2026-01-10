@@ -6,7 +6,9 @@
   "GameVersion": "1.27.5",
   "ThumbnailPath": "thumb.png",
   "EntryPoint": "DisplayMachineryAttributes.Mod",
-  "Tags": [],
+  "Tags": [
+    "Utility"
+  ],
   "Scripts": [
     "script.cs",
     "Core/ModSettings.cs",
@@ -29,7 +31,14 @@
     "Readers/WinchReader.cs",
     "Readers/LaserReader.cs",
     "Readers/HoverThrusterReader.cs",
-    "Readers/DamagableMachineryReader.cs"
+    "Readers/DamagableMachineryReader.cs",
+    "Readers/CounterSignalReader.cs",
+    "Readers/LaserReceiverReader.cs",
+    "Readers/HeatingElementReader.cs",
+    "Readers/AdhesiveCouplerReader.cs",
+    "Readers/PistonReader.cs",
+    "Readers/ServoReader.cs",
+    "Readers/PointerReader.cs"
   ],
   "Active": true,
   "UGCIdentity": null,
