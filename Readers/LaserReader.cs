@@ -18,7 +18,7 @@ namespace DisplayMachineryAttributes.Readers
         public string GetDisplayText()
         {
             var c = _behaviour.UserSetColour;
-            return $"rgb({c.r:F2}, {c.g:F2}, {c.b:F2})";
+            return $"RGB({c.r:F2}, {c.g:F2}, {c.b:F2})";
         }
     }
 }

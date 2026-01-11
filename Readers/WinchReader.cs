@@ -17,7 +17,7 @@ namespace DisplayMachineryAttributes.Readers
 
         public string GetDisplayText()
         {
-            return $"in [{_behaviour.LowerLimit}, {_behaviour.UpperLimit}]";
+            return $"Span: [{_behaviour.LowerLimit}, {_behaviour.UpperLimit}]";
         }
     }
 }
