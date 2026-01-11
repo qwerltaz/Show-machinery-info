@@ -2,7 +2,7 @@
   "Name": "[SOURCE] Display machinery attributes",
   "Author": "Puce",
   "Description": "On-screen display of attributes for machinery items.",
-  "ModVersion": "1.1",
+  "ModVersion": "1.2",
   "GameVersion": "1.27.5",
   "ThumbnailPath": "thumb.png",
   "EntryPoint": "DisplayMachineryAttributes.Mod",
